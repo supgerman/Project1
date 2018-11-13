@@ -1,0 +1,58 @@
+body {
+   
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ 
+}
+
+h1 {
+    text-align: center;
+}
+
+hr {
+color: black;
+width: 100%;
+size: 20px;
+
+}
+
+header {
+ 
+
+
+}
+
+#mainbody {
+    padding: 20px;
+    margin: 20px 200px;
+}
+
+#NofC {
+   width: 100%;
+}
+
+
+#address {
+    width: 100%;
+}
+
+#state {
+    
+}
+
+#city {
+   margin: 0px 400px 0px 0px;
+}
+
+#cityform {
+ padding: 0px 900px 0px 0px
+}
+
+#stateform {
+    padding: 0px 300px 0px 300px;
+}
+
+
+
+button :hover {
+    color: yellow;
+}

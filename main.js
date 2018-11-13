@@ -9,28 +9,16 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <script src="main.js"></script>
 </head>
-
 <body>
-    <div class="jumbotron" id="frontPage">   
+   
     <header>
     <h1>Venue 4 you</h1>
-    <p>Lorem ipsum dolor sit amet, est in scaevola theophrastus, unum iudico ad pro. Errem blandit contentiones mea ne, placerat detraxit euripidis qui ne. Vim eu illum essent, eirmod diceret eum ex. Cum vide vidit omnis at, duo malis homero ad, mea regione intellegat referrentur ad. Iudico partiendo ullamcorper vel cu, tation aliquid officiis ut nec, est in disputando definitionem. Et illud modus zril vim, at dolores convenire honestatis per.
-    </p>
+    <p></p>
 </header>
 <hr>
-<div class="venueF">
-
-</div>
-<div class="EventLookup">
-
-</div>
 
 
 
-
-
-</div>
     <a href='https://www.freepik.com/free-vector/abstract-triangle-shape-burst-background_2395693.htm'>Designed by Starline</a>
 </body>
 </html>
-
