@@ -16,9 +16,28 @@ size: 20px;
 }
 
 header {
- 
+background-color: lightyellow; 
 
 
+}
+
+.rental {
+    padding: 20px 20px;
+    height: 300px;
+    width: 400px;
+    margin: 10px 200px 10px 125p
+    float: right;
+}
+
+.venueF :hover {
+    transform: scale(1.5);
+}
+.venueF {
+    padding: 20px 20px;
+    height: 300px;
+    width: 400px;
+    margin: 10px 125px 10px 225px;
+    float: left;
 }
 
 #mainbody {
@@ -29,7 +48,10 @@ header {
 #NofC {
    width: 100%;
 }
-
+ .hamster {
+    height: 150px;
+    width: 150px;    
+ }
 
 #address {
     width: 100%;
