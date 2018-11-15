@@ -1,0 +1,112 @@
+body {
+
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+hr {
+color: black;
+width: 100%;
+size: 20px;
+
+}
+
+header {
+background-color: lightyellow;
+
+
+}
+
+.rental {
+    padding: 20px 20px;
+    height: 300px;
+    width: 400px;
+    margin: 10px 200px 10px 125p
+    float: right;
+}
+
+.venueF :hover {
+    transform: scale(1.5);
+}
+.venueF {
+    padding: 20px 20px;
+    height: 300px;
+    width: 400px;
+    margin: 10px 125px 10px 225px;
+    float: left;
+}
+
+#mainbody {
+    padding: 20px;
+    margin: 20px 200px;
+}
+
+#NofC {
+   width: 100%;
+}
+ .hamster {
+    height: 150px;
+    width: 150px;
+ }
+
+#address {
+    width: 100%;
+}
+
+#state {
+
+}
+
+#city {
+   margin: 0px 400px 0px 0px;
+}
+
+#cityform {
+ padding: 0px 900px 0px 0px
+}
+
+#stateform {
+    padding: 0px 300px 0px 300px;
+}
+
+
+
+button :hover {
+    color: yellow;
+}
+
+
+
+
+
+img{
+  width: 100%;
+}
+
+
+.main-nav-h2{
+  color: white;
+  text-align: center;
+  margin-bottom: -60px;
+  position: relative;
+  z-index: 3;
+}
+
+@media (min-width: 100px){
+  #home-main-nav{
+    display: block;
+  }
+}
+
+
+@media (min-width: 500px){
+  #home-main-nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}

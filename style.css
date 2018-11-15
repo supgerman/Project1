@@ -1,7 +1,7 @@
 body {
-   
+
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
- 
+
 }
 
 h1 {
@@ -15,8 +15,14 @@ size: 20px;
 
 }
 
+#DescriptionofSpace {
+height: 100px;
+width: 100%;
+
+}
+
 header {
-background-color: lightyellow; 
+background-color: lightyellow;
 
 
 }
@@ -42,7 +48,7 @@ background-color: lightyellow;
 
 #mainbody {
     padding: 20px;
-    margin: 20px 200px;
+    margin: 20px 100px;
 }
 
 #NofC {
@@ -50,7 +56,7 @@ background-color: lightyellow;
 }
  .hamster {
     height: 150px;
-    width: 150px;    
+    width: 150px;
  }
 
 #address {
@@ -58,7 +64,7 @@ background-color: lightyellow;
 }
 
 #state {
-    
+
 }
 
 #city {
@@ -73,8 +79,80 @@ background-color: lightyellow;
     padding: 0px 300px 0px 300px;
 }
 
+#listSpace {
+    width: 80%;
+align:center;
+}
 
 
 button :hover {
     color: yellow;
+}
+
+.sidenav {
+    display: none;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+
+img{
+  width: 100%;
+}
+
+
+.main-nav-h2{
+  color: white;
+  text-align: center;
+  margin-bottom: -60px;
+  position: relative;
+  z-index: 3;
+}
+
+@media (min-width: 100px){
+  #home-main-nav{
+    display: block;
+  }
+}
+
+
+@media (min-width: 500px){
+  #home-main-nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
 }
