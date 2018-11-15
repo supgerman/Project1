@@ -10,23 +10,35 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-     <script src="main.js"></script>
+     <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
  </head>
  <body>
      <div class="jumbotron" id="mainbody">
-    <header>
+            <div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <a href="aboutus.html">About Us</a>
+                    <a href="index.html">Home</a>
+                    <a href="form.html">Enter youre Space</a>
+                    <a href="listofspace.html">Look for Space</a>
+                  </div>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        <header>
         <h2>Form</h2>
         <p>Alia reprimique vis et. Vituperata consequuntur ea ius. Eam in dicit phaedrum signiferumque. Ei primis fabulas deterruisset vis. An prima nostro fabulas nec, ea nominati reprehendunt pro.</p>
     </header> 
+    <form id="Addspace">
     <h3 class="contactUsH2">Name of Company</h3>
-    <form>
+    
         <input id= "NofC" type="text" placeholder="Name of Company">
-    </form>
+   
     <h3 class="contactUsH2">Address</h3>
-    <form>
+   
         <input id= "address" type="text" placeholder="address">
-    </form>
-    <form id="cityform">
+    
+    <!-- <form id="cityform">No
     <h3 class="contactUsH2">City</h3>
    
         <input id= "city" type="text" placeholder="city">
@@ -35,32 +47,34 @@
     <h3 class="contactUsH2">State</h3>
     
         <input id= "state" type="text" placeholder="Add your state">
-    </form>
+    </form> -->
     <h3 class="contactUsH2">Zipcode</h3>
-    <form>
+   
         <input id= "Zipcode" type="number">
-    </form>
-    <h3 class="contactUsH2">Phone Number</h3>
-    <form>
-        <input id= "phonenumber" type="number">
-    </form>
+ 
+    <h3 class="contactUsH2">Email Address</h3>
+   
+        <input id= "emailAddress" type="text">
+
     <h3 class="contactUsH2">Max People</h3>
-    <form>
+   
         <input id= "maxpeople" type="number">
-    </form>
+    
     <h3 class="contactUsH2">Upload Photos</h3>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+ 
         <input type="file" name="fileToUpload" id="fileToUpload">
         <input type="submit" value="Upload Image" name="submit">
-        </form>
+       
     <h3 class="contactUsH2">Description of Space</h3>
-    <form>
+   
         <input id= "DescriptionofSpace" type="text">
-    </form>
+    
 
 
-    <button class="btn btn-primary" id="submit">
+    <button class="btn btn-primary" id="submit" type="submit">
             Send</button>
+        </form>
 </div>
+<script src="frontendjs.js"></script>
  </body>
  </html>
