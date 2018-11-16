@@ -11,9 +11,12 @@
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
      <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+ src="https://code.jquery.com/jquery-3.3.1.min.js"
+ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+ crossorigin="anonymous"></script>
+
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
  </head>
  <body>
      <div class="jumbotron" id="mainbody">
@@ -26,17 +29,17 @@
                   </div>
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <header>
-        <h2>Form</h2>
-        <p>Alia reprimique vis et. Vituperata consequuntur ea ius. Eam in dicit phaedrum signiferumque. Ei primis fabulas deterruisset vis. An prima nostro fabulas nec, ea nominati reprehendunt pro.</p>
+        <h2>Venue 4 You</h2>
+        <p>Please enter the information about your venue below.</p>
     </header> 
     <form id="Addspace">
     <h3 class="contactUsH2">Name of Company</h3>
     
-        <input id= "NofC" type="text" placeholder="Name of Company">
+        <input id= "venue-name-input" type="text" placeholder="Name of Company">
    
     <h3 class="contactUsH2">Address</h3>
    
-        <input id= "address" type="text" placeholder="address">
+        <input id= "address-input" type="text" placeholder="address">
     
     <!-- <form id="cityform">No
     <h3 class="contactUsH2">City</h3>
@@ -50,31 +53,32 @@
     </form> -->
     <h3 class="contactUsH2">Zipcode</h3>
    
-        <input id= "Zipcode" type="number">
+        <input id= "zip-input" type="number">
  
     <h3 class="contactUsH2">Email Address</h3>
    
-        <input id= "emailAddress" type="text">
+        <input id= "vendor-email-input" type="text">
 
     <h3 class="contactUsH2">Max People</h3>
    
-        <input id= "maxpeople" type="number">
+        <input id= "capacity-input" type="number">
     
     <h3 class="contactUsH2">Upload Photos</h3>
  
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
+<!-- changed this code to coincide w/the upload photo JS -->
+    <progress value ="0" max="100" id="uploader">0</progress>
+    <input type ="file" value ="upload" id ="fileButton"/>
        
     <h3 class="contactUsH2">Description of Space</h3>
    
-        <input id= "DescriptionofSpace" type="text">
+        <input id= "description-input" type="text">
     
 
 
-    <button class="btn btn-primary" id="submit" type="submit">
+    <button class="btn btn-primary" id="click-button" type="submit">
             Send</button>
         </form>
 </div>
-<script src="frontendjs.js"></script>
+<script type="text/javascript" src="script.js"></script>
  </body>
  </html>
