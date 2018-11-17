@@ -60,23 +60,6 @@
  $("#capacity-input").val("");
  $("#description-input").val("");
  $("#vendor-email-input").val("");
-
- var modal = document.querySelector(".modal");
- var trigger = document.querySelector(".trigger");
- var closeButton = document.querySelector(".close-button");
- 
- console.log(trigger);
- console.log(closeButton);
-
-function toggleModal() {
-    modal.classList.toggle("show-modal");
-}
-
-function windowOnClick(event) {
-    if (event.target === modal) {
-        toggleModal();
-    }
-}
 });
 
 // // 3. Create Firebase event for adding vendor to the database and a row in the html when a user adds an entry
