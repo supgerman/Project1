@@ -14,6 +14,12 @@
  src="https://code.jquery.com/jquery-3.3.1.min.js"
  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
  crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.22/css/uikit.min.css" />
+
+ <!-- UIkit JS -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.22/js/uikit.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.22/js/uikit-icons.min.js"></script>
+ 
 
   <!-- Firebase Reference -->
   <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
@@ -77,10 +83,17 @@
 
     <button class="btn btn-primary" id="click-button" type="submit">
             Send</button>
+            <div id="my-id" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <h2 class="uk-modal-title">Thank you For your listing</h2>
+                    <button class="uk-modal-close" type="button">close</button>
+                </div>
+            </div>
+                </form>
             
             
         </form>
 </div>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="frontendjs.js"></script>
  </body>
  </html>
