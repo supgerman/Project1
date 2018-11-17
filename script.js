@@ -50,7 +50,8 @@
  console.log(newVendor.vendorDetail);
  console.log(newVendor.vendorEmail);
 
- alert("vendor successfully added");
+//  alert("vendor successfully added");
+
 
  // Clears all of the text-boxes
  $("#venue-name-input").val("");
@@ -80,6 +81,8 @@ database.ref().on("child_added", function(snapshot) {
     console.log(vendorEmail);
 
     });
+
+    
 
     //   get Elements
 var uploader = document.getElementById("uploader");
@@ -118,6 +121,8 @@ fileButton.addEventListener("change", function(e){
         }
     );
 });
+
+
 
     
 
