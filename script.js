@@ -1,7 +1,9 @@
+var uploadTask;
+
 // {/* <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> */}
  
   // Initialize Firebase
-  var config = {
+var config = {
     apiKey: "AIzaSyAtDIitolx33OIPaqziRfVfvWYWS0MY5Ik",
     authDomain: "group-project-1-2127f.firebaseapp.com",
     databaseURL: "https://group-project-1-2127f.firebaseio.com",
@@ -9,46 +11,40 @@
     storageBucket: "group-project-1-2127f.appspot.com",
     messagingSenderId: "525088904938"
   };
-    firebase.initializeApp(config);
+firebase.initializeApp(config);
 
-    // Get a reference to the database service
-    var database = firebase.database();
+// Get a reference to the database service
+var database = firebase.database();
 
+// make this a global variable for purposes of obtaining URL image data from firebase (code below)
+const newVendor = {}
 
-  // 2. Button for adding input
-    $("#click-button").on("click", function(event) {
+// 2. Button for adding input
+$("#click-button").on("click", function(event) {
     event.preventDefault(event);
 
     // Grabs user input
-    var venueName = $("#venue-name-input").val();
-    var vendorAddress = $("#address-input").val();
-    var vendorZip = $("#zip-input").val(); 
-    var vendorCapacity = $("#capacity-input").val();
-    var vendorDetail = $("#description-input").val();
-    var vendorEmail = $("#vendor-email-input").val();
+    newVendor.name = $("#venue-name-input").val();
+    newVendor.location = $("#address-input").val();
+    newVendor.details = $("#zip-input").val(); 
+    newVendor.number = $("#capacity-input").val();
+    newVendor.description = $("#description-input").val();
+    newVendor.email = $("#vendor-email-input").val();
+   
     
  // removed the .trim() at the end of all these as I kept getting a console error
-
- // Creates local "temporary" object for holding vendor input
-    var newVendor  = {
-    name: venueName,
-    location: vendorAddress,
-    details: vendorZip,
-    number: vendorCapacity,
-    description: vendorDetail,
-    email: vendorEmail
- };
 
  // Uploads vendor input to the database
  database.ref().push(newVendor);
 
 //  Logs everything to console
- console.log(newVendor.venueName);
- console.log(newVendor.vendorAddress);
- console.log(newVendor.vendorZip);
- console.log(newVendor.vendorCapacity);
- console.log(newVendor.vendorDetail);
- console.log(newVendor.vendorEmail);
+//  console.log(newVendor.venueName);
+//  console.log(newVendor.vendorAddress);
+//  console.log(newVendor.vendorZip);
+//  console.log(newVendor.vendorCapacity);
+//  console.log(newVendor.vendorDetail);
+//  console.log(newVendor.vendorEmail);
+
 
 //  alert("vendor successfully added");
 
@@ -72,19 +68,11 @@ database.ref().on("child_added", function(snapshot) {
     var vendorCapacity = snapshot.val().number;
     var vendorDetail = snapshot.val().description;
     var vendorEmail = snapshot.val().email;
-
-    console.log(venueName);
-    console.log(vendorAddress);
-    console.log(vendorZip);
-    console.log(vendorCapacity);
-    console.log(vendorDetail);
-    console.log(vendorEmail);
-
-    });
+});
 
     
 
-    //   get Elements
+//   get Elements------THIS IS THE WORKING CODE FOR THE PHOTO UPLOAD----------------
 var uploader = document.getElementById("uploader");
 var fileButton = document.getElementById("fileButton");
 
@@ -96,31 +84,44 @@ fileButton.addEventListener("change", function(e){
     // create a storage ref
     var storageRef = firebase.storage().ref("venue_images/" + file.name);
 
-
     // upload file- the put method will upload the file to firebase storage. adding the task variable helps you can an eye on the progress
-
-    var task = storageRef.put(file);
+    // var task = storageRef.put(file);
+    var uploadTask = storageRef.put(file);
     var data = $("<img>").append(file);
     // //   // Append the image to the body
     $("body").append(data);
 
-    // update progress bar
-
-    task.on("state_changed",
-        function progress(snapshot){
-            var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            uploader.value = percentage;
-        },
-
-        function error(err){
-
-        },
-
-        function complete(){
-
+    uploadTask.on("state_changed", function(snapshot){
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            uploader.value = progress;
+                console.log("Upload is " + progress + "% done");
+            switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or ‘paused’
+                console.log("Upload is paused");
+            break;
+            case firebase.storage.TaskState.RUNNING: // or ‘running’
+            console.log("Upload is running");
+            break;
         }
-    );
+    }, function(error) {
+     // Handle unsuccessful uploads
+    }, function() {
+     // Handle successful uploads on complete
+     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+        console.log("File available at", downloadURL);
+        newVendor.imageUrl = downloadURL;
+        console.log(newVendor.imageUrl);
+
+        
+     });
+    });
 });
+
+
+
 
 
 
