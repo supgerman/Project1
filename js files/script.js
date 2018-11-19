@@ -50,7 +50,8 @@
  console.log(newVendor.vendorDetail);
  console.log(newVendor.vendorEmail);
 
- alert("vendor successfully added");
+//  alert("vendor successfully added");
+
 
  // Clears all of the text-boxes
  $("#venue-name-input").val("");
@@ -79,19 +80,9 @@ database.ref().on("child_added", function(snapshot) {
     console.log(vendorDetail);
     console.log(vendorEmail);
 
-    //   // Create the new row
-    // var data = $("<p>").append(
-    //     $("#venue-name-input").text(venueName),
-    //     $(".contactUsH3").text(vendorAddress),
-    //     $(".contactUsH4").text(vendorZip),
-    //     $("#capacity-input").text(vendorCapacity),
-    //     $("#description-input").text(vendorDetail),
-    //     $("#email-input").text(vendorEmail)
-      // );
-    
-    // //   // Append the new row to the table
-      // $("#form-body").append(data);
     });
+
+    
 
     //   get Elements
 var uploader = document.getElementById("uploader");
@@ -130,6 +121,8 @@ fileButton.addEventListener("change", function(e){
         }
     );
 });
+
+
 
     
 

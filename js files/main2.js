@@ -49,8 +49,8 @@ database.ref().on("child_added", function(snapshot) {
 
       //   // Create the new row
     // var data = $("<p>").append(
-        $("#venue-name-input").text(venueName),
-        $("#address-input").text(vendorAddress),
+        $("#venue-name-input").text("Venue Name: " + venueName),
+        $("#address-input").text("Address: " + vendorAddress),
         $("#zip-input").text(vendorZip),
         $("#capacity-input").text(vendorCapacity),
         $("#description-input").text(vendorDetail),

@@ -1,17 +1,32 @@
 body {
 
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-image: url("726.jpg");
+}
 
+#mainbody {
+    border: black solid 3px;
+    background-color: white;
+}
+
+
+#vendor-email-input {
+    width: 60%;
 }
 
 h1 {
     text-align: center;
 }
-
 hr {
 color: black;
 width: 100%;
 size: 20px;
+
+}
+
+#description-input {
+height: 100px;
+width: 100%;
 
 }
 
@@ -42,10 +57,10 @@ background-color: lightyellow;
 
 #mainbody {
     padding: 20px;
-    margin: 20px 200px;
+    margin: 20px 100px;
 }
 
-#NofC {
+#venue-name-input {
    width: 100%;
 }
  .hamster {
@@ -53,7 +68,7 @@ background-color: lightyellow;
     width: 150px;
  }
 
-#address {
+#address-input {
     width: 100%;
 }
 
@@ -61,25 +76,59 @@ background-color: lightyellow;
 
 }
 
-#city {
-   margin: 0px 400px 0px 0px;
-}
 
-#cityform {
- padding: 0px 900px 0px 0px
-}
 
 #stateform {
     padding: 0px 300px 0px 300px;
 }
 
+.fromStle {
 
-
-button :hover {
-    color: yellow;
+/* text-align: center; */
 }
 
 
+button a:hover {
+    color: yellow;
+}
+
+.sidenav {
+    display: none;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
 
 
@@ -100,6 +149,8 @@ img{
   #home-main-nav{
     display: block;
   }
+
+
 }
 
 
