@@ -5,7 +5,7 @@ var vendorZip;
 var vendorCapacity;
 var vendorDetail;
 var vendorEmail;
-var vendorImage;
+var imageUrl;
 var firebaseSnapshot;
   
 // Initialize Firebase
@@ -35,9 +35,9 @@ event.preventDefault(event);
   newVendor.number = $("#capacity-input").val();
   newVendor.description = $("#description-input").val();
   newVendor.email = $("#vendor-email-input").val();
-  newVendor.image =$("#image-input").val();
+  // newVendor.image =$("#image-input").val();
 
-  database.ref().push(newVendor);
+database.ref().push(newVendor);
 
   //  Logs everything to console
   //  console.log(newVendor.venueName);
@@ -46,22 +46,19 @@ event.preventDefault(event);
   //  console.log(newVendor.vendorCapacity);
   //  console.log(newVendor.vendorDetail);
   //  console.log(newVendor.vendorEmail);
-  
-  //  alert("vendor successfully added");
-  
-  
+    
    // Clears all of the text-boxes
-   $("#venue-name-input").val("");
-   $("#address-input").val("");
-   $("#zip-input").val("");
-   $("#capacity-input").val("");
-   $("#description-input").val("");
-   $("#vendor-email-input").val("");
+  $("#venue-name-input").val("");
+  $("#address-input").val("");
+  $("#zip-input").val("");
+  $("#capacity-input").val("");
+  $("#description-input").val("");
+  $("#vendor-email-input").val("");
   });
 
 // // 3. Create Firebase event for adding vendor to the database and a row in the text when a user adds an entry
 database.ref().on("child_added", function(snapshot) {
-firebaseSnapshot = snapshot;
+// firebaseSnapshot = snapshot;
 //  console.log("firebase data: ", firebaseSnapshot);
 //  console.log(snapshot.val());
  
@@ -71,39 +68,27 @@ firebaseSnapshot = snapshot;
   var vendorCapacity = snapshot.val().number;
   var vendorDetail = snapshot.val().description;
   var vendorEmail = snapshot.val().email;
-  var vendorImage = snapshot.val().image;
-  console.log(vendorImage);
+  var imageUrl = snapshot.val().imageUrl;
+  // console.log(imageUrl);
 
 
-  //   // Create the new list
-  var data = $("<ul>").append(
-    // $("<li>").text("Image: " + imageUrl),
-    $("<li>").text("Venue Name: " + venueName),
-    $("<li>").text("Address: " + vendorAddress),
-    $("<li>").text("Zip: " + vendorZip),
-    $("<li>").text("Max Capacity: " + vendorCapacity),
-    $("<li>").text("Venue Description: " + vendorDetail),
-    $("<li>").text("Email: " + vendorEmail)
+  // **Rick helped me crack adding the image code
+   //   // Create the new list
+var data = $("<ul>").html(
+   `
+    <img src="${imageUrl}" />
+    <li>Venue Name:  ${venueName}</li>
+    <li>Address: ${vendorAddress}</li>
+    <li>Zip:  ${vendorZip}</li>
+    <li>Max Capacity:  ${vendorCapacity}</li>
+    <li>Venue Description:  ${vendorDetail}</li>
+    <li>Email:  ${vendorEmail}</li>`
   );
+$("#container").append(data);
 
-// //   // Append the new row to the table
-  $("#container").append(data);
-  // $("#image-input").append(imageUrl);
-// 
-    // Handle successful uploads on complete
-    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-       database.ref.getDownloadURL().then(function(downloadURL) {
-       console.log("File available at", downloadURL);
-       newVendor.imageUrl = downloadURL;
-       console.log(newVendor.imageUrl);
-  
+  });
 
 
-
-});
-
-});
- 
 
 
 

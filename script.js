@@ -30,6 +30,7 @@ $("#click-button").on("click", function(event) {
     newVendor.number = $("#capacity-input").val();
     newVendor.description = $("#description-input").val();
     newVendor.email = $("#vendor-email-input").val();
+    // newVendor.imageUrl =$("#file-button").val();
    
     
  // removed the .trim() at the end of all these as I kept getting a console error
@@ -56,6 +57,7 @@ $("#click-button").on("click", function(event) {
  $("#capacity-input").val("");
  $("#description-input").val("");
  $("#vendor-email-input").val("");
+//  $("#file-button").val("");
 });
 
 // // 3. Create Firebase event for adding vendor to the database and a row in the html when a user adds an entry
@@ -68,6 +70,8 @@ database.ref().on("child_added", function(snapshot) {
     var vendorCapacity = snapshot.val().number;
     var vendorDetail = snapshot.val().description;
     var vendorEmail = snapshot.val().email;
+    var imageUrl= snapshot.val();
+    // console.log(imageUrl);
 });
 
     
@@ -113,7 +117,7 @@ fileButton.addEventListener("change", function(e){
         uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
         console.log("File available at", downloadURL);
         newVendor.imageUrl = downloadURL;
-        console.log(newVendor.imageUrl);
+        // console.log(newVendor.imageUrl);
 
         
      });
