@@ -9,6 +9,7 @@ body {
     background-color: white;
 }
 
+<<<<<<< HEAD:img and css/style.css
 #mapid { 
     height: 400px; 
     width: 50%; 
@@ -16,6 +17,8 @@ body {
     padding: 20px;
     margin: 20px;
 }
+=======
+>>>>>>> f67a054727b65e58f559817426015e047e9636a8:img and css/style.css
 
 #vendor-email-input {
     width: 60%;

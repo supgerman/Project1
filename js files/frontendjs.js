@@ -1,11 +1,15 @@
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f67a054727b65e58f559817426015e047e9636a8
 function openNav() {
     document.getElementById("mySidenav").style.display = "block";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.display = "none";
+<<<<<<< HEAD
 }
 
 var zipCode = 10019;
@@ -51,3 +55,6 @@ var queryURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
   
   
   
+=======
+}
+>>>>>>> f67a054727b65e58f559817426015e047e9636a8
