@@ -1,54 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Leaflet CSS-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
-   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-   crossorigin=""/>
-
-   <!--Leaflet JS-->
-   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
-   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
-   crossorigin=""></script>
-
-   <!--Leaflet Control-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
-    <!--J Query-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!---->
-</head>
 
 
+function openNav() {
+    document.getElementById("mySidenav").style.display = "block";
+}
 
+function closeNav() {
+    document.getElementById("mySidenav").style.display = "none";
+}
 
-<!--CSS BEGINS HERE-->
-<style>
-
-</style>
-
-
-
-
-<!--HTML BEGINS HERE-->
-<body>
-
-
-
-
-
-
-<!--JS BEGINS HERE-->
-<script>
-
-//ZIP CODE: User enters a zip code within Manhattan, which will be stored in the variable labeled 'zipCode'
 var zipCode = 10019;
 
 
@@ -87,7 +46,8 @@ var queryURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
         }).addTo(mymap);
     });
 
-</script>
-    
-</body>
-</html>
+
+     
+  
+  
+  
