@@ -203,10 +203,7 @@ $("#zipCodeSubmit").on("click", function (event) {
           console.log("Description: " + vendorDetail);
           console.log("Contact Email: " + vendorEmail);
         }
-//RETURNED IF NO ZIP CODE MATCH: This alert is currently not working ****************
-// else {
-//     alert("No vendors found within the zipcode " + firebaseZipCode + ".")
-// }
+
       });
     });
 
