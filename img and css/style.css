@@ -1,28 +1,31 @@
 body {
  
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        background-image: url("tiny-squares.png");
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url("tiny-squares.png");
 }
 #mapid { 
-    float: right;
-    height: 400px; 
-    width: 50%; 
-    padding: 20px;
-    border: black solid 1px;
-    margin: 10px;
+float: right;
+height: 400px; 
+width: 45%; 
+padding: 20px;
+border: black solid 1px;
+margin: 10px;
 }
 #mainbody {
-    border: black solid 3px;
-    background-color: white;
+/* border: black solid 3px; */
+background-color: white;
+padding: 20px 2px;
+margin: 20px 20px 20px 33px;
+width: 95%;
+
 }
 
-
 #vendor-email-input {
-    width: 60%;
+width: 60%;
 }
 
 h1 {
-    text-align: center;
+text-align: center;
 }
 hr {
 color: black;
@@ -31,6 +34,17 @@ size: 20px;
 
 }
 
+#textforlist {
+border: solid black 1px;
+padding: 20px;
+margin: 10px;
+float: left;
+height: 400px;
+width: 40%;
+}
+
+
+
 #description-input {
 height: 100px;
 width: 100%;
@@ -38,45 +52,42 @@ width: 100%;
 }
 
 header {
-background-color: lightyellow;
+background-color: rgb(243, 16, 0);
 
 
 }
 
 .rental {
-    padding: 20px 20px;
-    height: 300px;
-    width: 400px;
-    margin: 10px 200px 10px 125p
-    float: right;
+padding: 20px 20px;
+height: 300px;
+width: 400px;
+margin: 10px 200px 10px 125p
+float: right;
 }
 
 .venueF :hover {
-    transform: scale(1.5);
+transform: scale(1.5);
 }
 .venueF {
-    padding: 20px 20px;
-    height: 300px;
-    width: 400px;
-    margin: 10px 125px 10px 225px;
-    float: left;
+padding: 20px 20px;
+height: 300px;
+width: 400px;
+margin: 10px 125px 10px 225px;
+float: left;
 }
 
-#mainbody {
-    padding: 20px;
-    margin: 20px 100px;
-}
+
 
 #venue-name-input {
-   width: 100%;
+width: 100%;
 }
- .hamster {
-    height: 150px;
-    width: 150px;
- }
+.hamster {
+height: 150px;
+width: 150px;
+}
 
 #address-input {
-    width: 100%;
+width: 100%;
 }
 
 #state {
@@ -86,7 +97,7 @@ background-color: lightyellow;
 
 
 #stateform {
-    padding: 0px 300px 0px 300px;
+padding: 0px 300px 0px 300px;
 }
 
 .fromStle {
@@ -96,66 +107,66 @@ background-color: lightyellow;
 
 
 button a:hover {
-    color: yellow;
+color: yellow;
 }
 
 .sidenav {
-    display: none;
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 60px;
+display: none;
+height: 100%;
+width: 250px;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: #111;
+overflow-x: hidden;
+padding-top: 60px;
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 25px;
+color: #818181;
+display: block;
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+color: #f1f1f1;
 }
 
 .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+position: absolute;
+top: 0;
+right: 25px;
+font-size: 36px;
+margin-left: 50px;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
 }
 
 
 
 img{
-  width: 100%;
+width: 100%;
 }
 
 
 .main-nav-h2{
-  color: white;
-  text-align: center;
-  margin-bottom: -60px;
-  position: relative;
-  z-index: 3;
+color: white;
+text-align: center;
+margin-bottom: -60px;
+position: relative;
+z-index: 3;
 }
 
 @media (min-width: 100px){
-  #home-main-nav{
-    display: block;
-  }
+#home-main-nav{
+display: block;
+}
 
 
 }
@@ -165,9 +176,9 @@ img{
 
 
 @media (min-width: 500px){
-  #home-main-nav{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-  }
+#home-main-nav{
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-gap: 10px;
+}
 }
