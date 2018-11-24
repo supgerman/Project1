@@ -135,22 +135,22 @@ function renderMap() {
 
 
     }).then(function (response) {                                         //Create function to do the following:
-      console.log("INSIDE CALL Zip Code: " + zipCode);
+      //console.log("INSIDE CALL Zip Code: " + zipCode);
       var longitude = response.features[0].center[0];                     //1.Get the longitude value and store in variable
       mapLongitude = longitude;
-      console.log("INSIDE CALL Long: " + mapLongitude);
+      //console.log("INSIDE CALL Long: " + mapLongitude);
 
       var latitude = response.features[0].center[1];                      //2.Get the latitude value and store in variable 
       mapLatitude = latitude;
-      console.log("INSIDE CALL Lat: " + mapLatitude);
+      //console.log("INSIDE CALL Lat: " + mapLatitude);
 
       var mapZoom = 15;                                                  //3.Specify the map zoom and store in variable
       map.setView([mapLatitude, mapLongitude], mapZoom);                 //4.Use Leaflet map method to create mymap variable (where lat, long and zoom is used)
 
 
-      console.log("Zip Code: " + zipCode);
-      console.log("Long: " + mapLongitude);
-      console.log("Lat: " + mapLatitude);
+      //console.log("Zip Code: " + zipCode);
+      //console.log("Long: " + mapLongitude);
+      //console.log("Lat: " + mapLatitude);
     });
 
   });
@@ -177,7 +177,7 @@ $("#zipCodeSubmit").on("click", function (event) {
     .then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {                   //1.This will create a snapshot for each child within Firebase.
         var key = childSnapshot.key;                                //2.This will save the key within the snapshot
-        console.log(key);                                           //3.This will console.log the key
+        //console.log(key);                                           //3.This will console.log the key
 
         //VENDOR VARIABLES
         var vendorDataBase = snapshot.val();
