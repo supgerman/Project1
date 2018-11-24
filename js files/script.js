@@ -16,6 +16,11 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var database = firebase.database();
 
+//Lat Long access token and variables - used to obtain geo location for vendor address
+var accessToken = 'sk.eyJ1IjoibXNoaXdyYXRhbjg4IiwiYSI6ImNqb2Ywc2g2NzAydHcza2xqNzMyMXE1N3gifQ.245Qhtto4LSUwvYByTpZmg';
+var vendorLat;
+var vendorLong;
+
 // make this a global variable for purposes of obtaining URL image data from firebase (code below)
 const newVendor = {}
 
@@ -31,7 +36,42 @@ $("#click-button").on("click", function(event) {
     newVendor.description = $("#description-input").val();
     newVendor.email = $("#vendor-email-input").val();
     // newVendor.imageUrl =$("#file-button").val();
-   
+
+    //Lat long for location is obtained here
+    var vendorZipCode = $("#zip-input").val().trim();
+    vendorDetail = vendorZipCode;
+  
+    var vendorStreetAddress = $("#address-input").val().trim();
+    vendorAddress = vendorStreetAddress;
+  
+    var queryURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
+      + vendorAddress
+      + "%20New%20York"
+      + "%20NY"
+      + "%20"
+      + vendorDetail
+      + ".json?access_token="
+      + accessToken
+      + "&cachebuster=1543079244603&autocomplete=true&types=address"
+  
+    $.ajax({
+      url: queryURL,                                                      //1.Specify query URL from above.
+      method: "GET"                                                       //2.Declare 'GET' method to obtain data from the request.
+  
+  
+    }).then(function (response) {                                         //Create function to do the following:
+      var longitude = response.features[0].center[0];                     //1.Get the longitude value
+      vendorLong = longitude;
+    //   console.log("New Vendor Long: " + longitude);
+  
+      var latitude = response.features[0].center[1];                      //2.Get the latitude value 
+      vendorLat = latitude;
+    //   console.log("New Vendor Lat: " + latitude);
+  
+    });
+
+    newVendor.longitude = $(vendorLong).val();                            //3.Add longitude to Firebase
+    newVendor.latitude = $(vendorLat).val();                              //4.Add latitude to Firebase
     
  // removed the .trim() at the end of all these as I kept getting a console error
 

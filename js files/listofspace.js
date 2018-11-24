@@ -197,4 +197,3 @@ $("#zipCodeSubmit").on("click", function (event) {
 
 //CALL RENDER MAP FUNCTION
 renderMap();
-
