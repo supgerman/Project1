@@ -1,3 +1,5 @@
+//_______________________________ADD VENDOR TO FIREBASE_______________________________________________________________________________________________________________
+//VARIABLES USED TO STORE VENDOR INFO: This will be used to save text entered on the venue page html by the venue owner. 
 var storageRef;
 var venueName;
 var vendorAddress;
@@ -56,38 +58,6 @@ $("#click-button").on("click", function (event) {
   $("#vendor-email-input").val("");
 });
 
-// // 3. Create Firebase event for adding vendor to the database and a row in the text when a user adds an entry
-database.ref().on("child_added", function (snapshot) {
-  // firebaseSnapshot = snapshot;
-  //  console.log("firebase data: ", firebaseSnapshot);
-  //  console.log(snapshot.val());
-
-  var venueName = snapshot.val().name;
-  var vendorAddress = snapshot.val().location;
-  var vendorZip = snapshot.val().details;
-  var vendorCapacity = snapshot.val().number;
-  var vendorDetail = snapshot.val().description;
-  var vendorEmail = snapshot.val().email;
-  var imageUrl = snapshot.val().imageUrl;
-  // console.log(imageUrl);
-
-
-  // **Rick helped me crack adding the image code
-  //   // Create the new list
-  var data = $("<ul>").html(
-    `
-    <img src="${imageUrl}" />
-    <li>Venue Name:  ${venueName}</li>
-    <li>Address: ${vendorAddress}</li>
-    <li>Zip:  ${vendorZip}</li>
-    <li>Max Capacity:  ${vendorCapacity}</li>
-    <li>Venue Description:  ${vendorDetail}</li>
-    <li>Email:  ${vendorEmail}</li>`
-  );
-  $("#container").append(data);
-
-});
-
 
 //______________________________LEAFLET VARIABLES______________________________________________________________________________________________
 //MAP OBJECT: Used to render the initial map of NYC.
@@ -135,28 +105,28 @@ function renderMap() {
 
 
     }).then(function (response) {                                         //Create function to do the following:
-      console.log("INSIDE CALL Zip Code: " + zipCode);
+      //console.log("INSIDE CALL Zip Code: " + zipCode);
       var longitude = response.features[0].center[0];                     //1.Get the longitude value and store in variable
       mapLongitude = longitude;
-      console.log("INSIDE CALL Long: " + mapLongitude);
+      //console.log("INSIDE CALL Long: " + mapLongitude);
 
       var latitude = response.features[0].center[1];                      //2.Get the latitude value and store in variable 
       mapLatitude = latitude;
-      console.log("INSIDE CALL Lat: " + mapLatitude);
+      //console.log("INSIDE CALL Lat: " + mapLatitude);
 
       var mapZoom = 15;                                                  //3.Specify the map zoom and store in variable
       map.setView([mapLatitude, mapLongitude], mapZoom);                 //4.Use Leaflet map method to create mymap variable (where lat, long and zoom is used)
 
 
-      console.log("Zip Code: " + zipCode);
-      console.log("Long: " + mapLongitude);
-      console.log("Lat: " + mapLatitude);
+      //console.log("Zip Code: " + zipCode);
+      //console.log("Long: " + mapLongitude);
+      //console.log("Lat: " + mapLatitude);
     });
 
   });
 
 }
-
+//_____________________________VENDOR DISPLAY BY ZIP CODE______________________________________________________________________________________
 //FIREBASE VENDOR QUERY BY ZIP CODE BEGINS HERE
 //ON CLICK EVENT: Once submit button is clicked the zip code information entered will
 //be saved and data will be called/ displayed from Firebase.
@@ -169,15 +139,18 @@ $("#zipCodeSubmit").on("click", function (event) {
   var firebaseZipCode = $("#zipCodeInput").val().trim();
   console.log("Zip Code Entered: " + firebaseZipCode);
 
+  //Clear current content on the page from prior zip code search
+  $("#container").html("");
+
   //FUNCTION TO ACCESS FIREBASE: This function will use the snapshot method to first 
   //obtains all object key, then check Firebase for a zip code that matches then
   //set the variable values listed above.
   var query = firebase.database().ref().orderByKey();
   query.once("value")
     .then(function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {                   //1.This will create a snapshot for each child within Firebase.
-        var key = childSnapshot.key;                                //2.This will save the key within the snapshot
-        console.log(key);                                           //3.This will console.log the key
+      snapshot.forEach(function (childSnapshot) {                     //1.This will create a snapshot for each child within Firebase.
+        var key = childSnapshot.key;                                  //2.This will save the key within the snapshot
+        //console.log(key);                                           //3.This will console.log the key of every record in Firebase.
 
         //VENDOR VARIABLES
         var vendorDataBase = snapshot.val();
@@ -192,18 +165,29 @@ $("#zipCodeSubmit").on("click", function (event) {
         //RETURNED VENDOR INFORMATION IF ZIP CODE MATCHES
         if (vendorZip === firebaseZipCode) {
           countZipCodeMatch++;
-          $("#venue-count").text(countZipCodeMatch);
-          console.log(countZipCodeMatch);
-          console.log(vendorDataBase);
-          console.log(vendorChild);
-          console.log("Venue Name: " + venueName);
-          console.log("Street Address: " + vendorAddress);
-          console.log("Zip Code: " + vendorZip);
-          console.log("Max Capacity: " + vendorCapacity);
-          console.log("Description: " + vendorDetail);
-          console.log("Contact Email: " + vendorEmail);
-        }
+          // $("#venue-count").text(countZipCodeMatch);
+          console.log("SEARCH RESULTS: " + countZipCodeMatch + " found around zip code " + firebaseZipCode + ".");
+          // console.log(vendorDataBase);
+          // console.log(vendorChild);
+          // console.log("Venue Name: " + venueName);
+          // console.log("Street Address: " + vendorAddress);
+          // console.log("Zip Code: " + vendorZip);
+          // console.log("Max Capacity: " + vendorCapacity);
+          // console.log("Description: " + vendorDetail);
+          // console.log("Contact Email: " + vendorEmail);
 
+          var data = $("<ul>").html(
+            `
+            <img src="${imageUrl}" />
+            <li>Venue Name:  ${venueName}</li>
+            <li>Address: ${vendorAddress}</li>
+            <li>Zip:  ${vendorZip}</li>
+            <li>Max Capacity:  ${vendorCapacity}</li>
+            <li>Venue Description:  ${vendorDetail}</li>
+            <li>Email:  ${vendorEmail}</li>`
+          );
+          $("#container").append(data);
+        }
       });
     });
 
