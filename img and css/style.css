@@ -20,6 +20,9 @@ width: 95%;
 
 }
 
+
+}
+
 #vendor-email-input {
 width: 60%;
 }
@@ -75,8 +78,6 @@ width: 400px;
 margin: 10px 125px 10px 225px;
 float: left;
 }
-
-
 
 #venue-name-input {
 width: 100%;
@@ -180,5 +181,6 @@ display: block;
 display: grid;
 grid-template-columns: 1fr 1fr;
 grid-gap: 10px;
+
 }
 }
