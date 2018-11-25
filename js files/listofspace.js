@@ -150,7 +150,7 @@ $("#zipCodeSubmit").on("click", function (event) {
     .then(function (snapshot) {
       snapshot.forEach(function (childSnapshot) {                     //1.This will create a snapshot for each child within Firebase.
         var key = childSnapshot.key;                                  //2.This will save the key within the snapshot
-        //console.log(key);                                           //3.This will console.log the key of every record in Firebase.
+        // console.log(key);                                          //3.This will console.log the key of every record in Firebase.
 
         //VENDOR VARIABLES
         var vendorDataBase = snapshot.val();
@@ -161,6 +161,7 @@ $("#zipCodeSubmit").on("click", function (event) {
         var vendorCapacity = vendorChild.val().number;
         var vendorDetail = vendorChild.val().description;
         var vendorEmail = vendorChild.val().email;
+        var vendorImage = vendorChild.val().imageUrl;
 
         //RETURNED VENDOR INFORMATION IF ZIP CODE MATCHES
         if (vendorZip === firebaseZipCode) {
@@ -175,10 +176,11 @@ $("#zipCodeSubmit").on("click", function (event) {
           // console.log("Max Capacity: " + vendorCapacity);
           // console.log("Description: " + vendorDetail);
           // console.log("Contact Email: " + vendorEmail);
+          // console.log("img: " + vendorImage);
 
           var data = $("<ul>").html(
             `
-            <img src="${imageUrl}" />
+            <img src="${vendorImage}" />
             <li>Venue Name:  ${venueName}</li>
             <li>Address: ${vendorAddress}</li>
             <li>Zip:  ${vendorZip}</li>
