@@ -4,6 +4,7 @@ body {
     background-image: url("tiny-squares.png");
 }
 #mapid { 
+
 float: right;
 height: 400px; 
 width: 45%; 
@@ -11,6 +12,7 @@ padding: 20px;
 border: black solid 1px;
 margin: 10px;
 }
+
 #mainbody {
 /* border: black solid 3px; */
 background-color: white;
