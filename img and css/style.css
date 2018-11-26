@@ -1,22 +1,27 @@
 body {
  
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        background-image: url("tiny-squares.png");
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url("tiny-squares.png");
 }
 #mapid { 
-    float: right;
-    height: 400px; 
-    width: 50%; 
-    padding: 20px;
-    border: black solid 1px;
-    margin: 10px;
-
+float: right;
+height: 400px; 
+width: 45%; 
+padding: 20px;
+border: black solid 1px;
+margin: 10px;
 }
 #mainbody {
-border: black solid 3px;
+/* border: black solid 3px; */
 background-color: white;
+padding: 20px 2px;
+margin: 20px 20px 20px 33px;
+width: 95%;
+
 }
 
+
+}
 
 #vendor-email-input {
 width: 60%;
@@ -32,6 +37,17 @@ size: 20px;
 
 }
 
+#textforlist {
+border: solid black 1px;
+padding: 20px;
+margin: 10px;
+float: left;
+height: 400px;
+width: 40%;
+}
+
+
+
 #description-input {
 height: 100px;
 width: 100%;
@@ -39,7 +55,7 @@ width: 100%;
 }
 
 header {
-background-color: lightyellow;
+background-color: rgb(243, 16, 0);
 
 
 }
@@ -61,11 +77,6 @@ height: 300px;
 width: 400px;
 margin: 10px 125px 10px 225px;
 float: left;
-}
-
-#mainbody {
-padding: 20px;
-margin: 20px 100px;
 }
 
 #venue-name-input {
@@ -170,5 +181,6 @@ display: block;
 display: grid;
 grid-template-columns: 1fr 1fr;
 grid-gap: 10px;
+
 }
 }
