@@ -39,7 +39,7 @@ $("#click-button").on("click", function (event) {
     newVendor.email = $("#vendor-email-input").val();
     // newVendor.imageUrl =$("#file-button").val();
 
-    //Lat long for location is obtained here
+    //Lat long for location is obtained and saved here. This information will bed used for map marker
     var vendorZipCode = $("#zip-input").val().trim();
     vendorDetail = vendorZipCode;
 
@@ -75,9 +75,9 @@ $("#click-button").on("click", function (event) {
     });
 
     newVendor.longitude = vendorLong;                                        //3.Add longitude to Firebase
-    newVendor.latitude = vendorLong;                                         //4.Add latitude to Firebase
-    console.log("Outside Long: " + vendorLong);
-    console.log("Outside Lat: " + vendorLat);
+    newVendor.latitude = vendorLat;                                          //4.Add latitude to Firebase
+    console.log("Long added to storage: " + vendorLong);
+    console.log("Lat added to storage: " + vendorLat);
 
     //  removed the .trim() at the end of all these as I kept getting a console error
 
@@ -85,12 +85,12 @@ $("#click-button").on("click", function (event) {
     database.ref().push(newVendor);
 
     //  Logs everything to console
-    //  console.log(newVendor.venueName);
-    //  console.log(newVendor.vendorAddress);
-    //  console.log(newVendor.vendorZip);
-    //  console.log(newVendor.vendorCapacity);
-    //  console.log(newVendor.vendorDetail);
-    //  console.log(newVendor.vendorEmail);
+     console.log(newVendor.venueName);
+     console.log(newVendor.vendorAddress);
+     console.log(newVendor.vendorZip);
+     console.log(newVendor.vendorCapacity);
+     console.log(newVendor.vendorDetail);
+     console.log(newVendor.vendorEmail);
 
 
     //  alert("vendor successfully added");
@@ -106,7 +106,7 @@ $("#click-button").on("click", function (event) {
     //  $("#file-button").val("");
 });
 
-// // 3. Create Firebase event for adding vendor to the database and a row in the html when a user adds an entry
+// 3. Create Firebase event for adding vendor to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function (snapshot) {
     console.log(snapshot.val());
 
