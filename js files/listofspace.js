@@ -1,8 +1,5 @@
-//_______________________________ADD VENDOR TO FIREBASE_______________________________________________________________________________________________________________
-//VARIABLES USED TO STORE VENDOR INFO: This will be used to save text entered on the venue page html by the venue owner. 
 var storageRef;
 var venueName;
-var vendorAddress;
 var vendorZip;
 var vendorCapacity;
 var vendorDetail;
@@ -197,18 +194,18 @@ $("#zipCodeSubmit").on("click", function (event) {
           var data = $("<ul>").html(
             `
             <img src="${vendorImage}" />
-            <li>Venue Name:  ${venueName}</li>
-            <li>Address: ${vendorAddress}</li>
-            <li>Zip:  ${vendorZip}</li>
-            <li>Max Capacity:  ${vendorCapacity}</li>
-            <li>Venue Description:  ${vendorDetail}</li>
-            <li>Email:  ${vendorEmail}</li>`
+            <li><strong>Venue Name:</strong>  ${venueName}</li><br>
+            <li><strong>Address:</strong> ${vendorAddress}</li><br>
+            <li><strong>  Zip Code:</strong>  ${vendorZip}</li><br>
+            <li><strong>Maximum Capacity</strong>:  ${vendorCapacity}</li><br>
+            <li><strong>Venue Description:</strong>  ${vendorDetail}</li><br>
+            <li><strong>Email:</strong>  ${vendorEmail}</li>`
           );
           $("#container").append(data);
-
         }
       });
     });
+
 
 });
 

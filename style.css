@@ -22,9 +22,6 @@ width: 95%;
 
 }
 
-
-}
-
 #vendor-email-input {
 width: 60%;
 }
@@ -57,7 +54,8 @@ width: 100%;
 }
 
 header {
-background-color: rgb(243, 16, 0);
+background-color: rgb(190, 133, 129);
+
 
 
 }
@@ -66,7 +64,7 @@ background-color: rgb(243, 16, 0);
 padding: 20px 20px;
 height: 300px;
 width: 400px;
-margin: 10px 200px 10px 125p
+margin: 10px 200px 10px 125px;
 float: right;
 }
 
@@ -186,7 +184,7 @@ grid-gap: 10px;
 
 }
 }
-/* styling for the list of locations list */
+
 li{
     display:inline;
     color:black;
