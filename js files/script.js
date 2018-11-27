@@ -39,7 +39,7 @@ $("#click-button").on("click", function (event) {
     newVendor.email = $("#vendor-email-input").val();
     // newVendor.imageUrl =$("#file-button").val();
 
-    //Lat long for location is obtained and saved here. This information will bed used for map marker
+    //Lat long for location is obtained here
     var vendorZipCode = $("#zip-input").val().trim();
     vendorDetail = vendorZipCode;
 
@@ -58,39 +58,33 @@ $("#click-button").on("click", function (event) {
 
 
     $.ajax({
-        async: false,                                                       //1.Turn off async to all lat/long to be sent to global var
+        async: false,                                                       //1.Turn on async to all lat/long to be sent to global var
         url: queryURL,                                                      //2.Specify query URL from above.
         method: "GET"                                                       //3.Declare 'GET' method to obtain data from the request.
 
 
     }).then(function (response) {                                           //Create function to do the following:
         var longitude = response.features[0].center[0];                     //1.Get the longitude value
-        vendorLong = longitude;
-        //   console.log("New Vendor Long: " + longitude);
+        newVendor.longitude = longitude;                                    //2.Save value in logitude property
+        console.log("New Vendor Long: " + longitude);
 
-        var latitude = response.features[0].center[1];                      //2.Get the latitude value 
-        vendorLat = latitude;
-        //   console.log("New Vendor Lat: " + latitude);
+        var latitude = response.features[0].center[1];                      //3.Get the latitude value 
+        newVendor.latitude = latitude;                                      //4.Save value in the latitude property
+        console.log("New Vendor Lat: " + latitude);
+
+        database.ref().push(newVendor);                                     //5.Add all properties and assigned values to firebase
 
     });
 
-    newVendor.longitude = vendorLong;                                        //3.Add longitude to Firebase
-    newVendor.latitude = vendorLat;                                          //4.Add latitude to Firebase
-    console.log("Long added to storage: " + vendorLong);
-    console.log("Lat added to storage: " + vendorLat);
 
     //  removed the .trim() at the end of all these as I kept getting a console error
-
-    //  Uploads vendor input to the database
-    database.ref().push(newVendor);
-
     //  Logs everything to console
-     console.log(newVendor.venueName);
-     console.log(newVendor.vendorAddress);
-     console.log(newVendor.vendorZip);
-     console.log(newVendor.vendorCapacity);
-     console.log(newVendor.vendorDetail);
-     console.log(newVendor.vendorEmail);
+    //  console.log(newVendor.venueName);
+    //  console.log(newVendor.vendorAddress);
+    //  console.log(newVendor.vendorZip);
+    //  console.log(newVendor.vendorCapacity);
+    //  console.log(newVendor.vendorDetail);
+    //  console.log(newVendor.vendorEmail);
 
 
     //  alert("vendor successfully added");
@@ -106,7 +100,7 @@ $("#click-button").on("click", function (event) {
     //  $("#file-button").val("");
 });
 
-// 3. Create Firebase event for adding vendor to the database and a row in the html when a user adds an entry
+// // 3. Create Firebase event for adding vendor to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function (snapshot) {
     console.log(snapshot.val());
 
