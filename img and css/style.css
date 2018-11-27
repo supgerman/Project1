@@ -186,3 +186,10 @@ grid-gap: 10px;
 
 }
 }
+/* styling for the list of locations list */
+li{
+    display:inline;
+    color:black;
+    font-family: 'Poppins', sans-serif;
+
+}
