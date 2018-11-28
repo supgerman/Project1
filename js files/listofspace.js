@@ -76,141 +76,111 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='
   id: 'mapbox.streets',
 }).addTo(map);
 
-//_____________________________MAP DISPLAY____________________________________________________________________________________________________
-//MAP RENDERING: This is the code that must be called for mapped location to be displayed to the page. User entered zip code is captured here.
-//The lat/long for the zip code is obtained here from an AJAX call. 
+//_____________________________VENDOR DISPLAY BY ZIP CODE______________________________________________________________________________________
 function renderMap() {
-
-  //DEFAULT ZIP CODE AND LAT/LONG: This is the zip code and lat/long that will be displayed when the user first navigates to the page.
-  //These variables will be updated once the user enters the zip code of their choice.
-  var zipCode = "";
+  //LAT/LONG VARIABLES: Values will be assigned later in the code.
   var mapLongitude = "";
   var mapLatitude = "";
 
-  //ON CLICK EVENT FOR ZIPCODE SUBMIT BUTTON BEGINS HERE
-  $("#zipCodeSubmit").on("click", function (event) {                        //1.Submit button is clicked.
-    event.preventDefault();                                                 //2.This will prevent default.
+  //ON CLICK EVENT: Once submit button is clicked the zip code information entered will be saved and data will be called/ displayed from Firebase.
+  //This is the code that must be called for mapped location to be displayed to the page. User entered zip code is captured here.
+  $("#zipCodeSubmit").on("click", function (event) {
+    event.preventDefault();
 
-    var enteredZipCode = $("#zipCodeInput").val().trim();                   //3.User entered zip code will be stored in this variable.
-    zipCode = enteredZipCode;                                               //4.Default zip code will be updated with the user entered zip code.
-    $("#zipCodeInput").val("");                                             //5.Zip code text box on the html page will be cleared.
+    var countZipCodeMatch = 0;
 
-    //QUERY URL
-    var queryURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
-      + zipCode
-      + ".json?access_token="
-      + accessToken
-      + "&cachebuster=1542175693377&autocomplete=true&types=postcode&limit=1"
+    //User entered zipcode is saved in the following variable and console.logged
+    var firebaseZipCode = $("#zipCodeInput").val().trim();
+    console.log("Zip Code Entered: " + firebaseZipCode);
 
-    //AJAX CALL FOR LAT/LONG ENTERED BY USER BEGINS HERE    
-    $.ajax({
-      url: queryURL,                                                      //1.Specify query URL from above.
-      method: "GET"                                                       //2.Declare 'GET' method to obtain data from the request.
+    //Clear current content on the page from prior zip code search
+    $("#container").html("");
+
+    //FUNCTION TO ACCESS FIREBASE: This function will use the snapshot method to first obtains all object keys, then check Firebase for a zip code that matches then
+    //set the mapLongitude and mapLatitude values.
+    var query = firebase.database().ref().orderByKey();
+    query.once("value")
+      .then(function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {                     //1.This will create a snapshot for each child within Firebase.
+          var key = childSnapshot.key;                                  //2.This will save the key within the snapshot
+          // console.log(key);                                          //3.This will console.log the key of every record in Firebase.
+
+          //VENDOR VARIABLES
+          var vendorDataBase = snapshot.val();
+          var vendorChild = snapshot.child(key);
+          var venueName = vendorChild.val().name;
+          var vendorAddress = vendorChild.val().location;
+          var vendorZip = vendorChild.val().details;
+          var vendorCapacity = vendorChild.val().number;
+          var vendorDetail = vendorChild.val().description;
+          var vendorEmail = vendorChild.val().email;
+          var vendorImage = vendorChild.val().imageUrl;
+          var vendorLongitude = vendorChild.val().longitude;
+          var vendorLatitude = vendorChild.val().latitude;
+
+          //RETURNED VENDOR INFORMATION IF ZIP CODE MATCHES
+          if (vendorZip === firebaseZipCode) {
+            // console.log(vendorDataBase);
+            // console.log(vendorChild);
+            // console.log("Venue Name: " + venueName);
+            // console.log("Street Address: " + vendorAddress);
+            // console.log("Zip Code: " + vendorZip);
+            // console.log("Max Capacity: " + vendorCapacity);
+            // console.log("Description: " + vendorDetail);
+            // console.log("Contact Email: " + vendorEmail);
+            // console.log("img: " + vendorImage);
+            // console.log("Long: " + vendorLongitude);
+            // console.log("Lat: " + vendorLatitude);
+
+            //MAP DISPLAY VARIABLES
+            var mapZoom = 15;
+            mapLongitude = vendorChild.val().longitude;
+            mapLatitude = vendorChild.val().latitude;
+
+            //If there is a zipcode match and there is a lat/long for the a matching vendor
+            if (vendorLongitude !== undefined && vendorLatitude !== undefined && vendorLongitude !== 0 && vendorLatitude !== 0) {
+              L.marker([vendorLatitude, vendorLongitude]).addTo(map).bindPopup(venueName);   //1.Map marker will be displayed on the page with popup             
+              console.log(vendorLongitude);                                                 //2.Colsole log the Long for for the vendor found
+              console.log(vendorLatitude);                                                  //3.Colsole log the Lat for for the vendor found
 
 
-    }).then(function (response) {                                         //Create function to do the following:
-      //console.log("INSIDE CALL Zip Code: " + zipCode);
-      var longitude = response.features[0].center[0];                     //1.Get the longitude value and store in variable
-      mapLongitude = longitude;
-      //console.log("INSIDE CALL Long: " + mapLongitude);
+              var mapZoom = 15;                                                            //4.Specify the map zoom and store in variable
+              map.setView([mapLatitude, mapLongitude], mapZoom);                           //5.Use Leaflet map method to create mymap variable (where lat, long and zoom is used)
+              L.circle([mapLatitude, mapLongitude], { radius: 500 }).addTo(map);           //6.Use Leaflet circle method to highlight radius around the venue location
 
-      var latitude = response.features[0].center[1];                      //2.Get the latitude value and store in variable 
-      mapLatitude = latitude;
-      //console.log("INSIDE CALL Lat: " + mapLatitude);
+              //Console display if there is a zip code match
+              countZipCodeMatch++;
+              // $("#venue-count").text(countZipCodeMatch);
+              console.log("SEARCH RESULTS: " + countZipCodeMatch + " found around zip code " + firebaseZipCode + ".");
 
-      var mapZoom = 15;                                                  //3.Specify the map zoom and store in variable
-      map.setView([mapLatitude, mapLongitude], mapZoom);                 //4.Use Leaflet map method to create mymap variable (where lat, long and zoom is used)
+              //Display venue details on the page below map.
+              var data = $("<ul>").html(
+                `<img src="${vendorImage}" />
+              <li>Venue Name:  ${venueName}</li>
+              <li>Address: ${vendorAddress}</li>
+              <li>Zip:  ${vendorZip}</li>
+              <li>Max Capacity:  ${vendorCapacity}</li>
+              <li>Venue Description:  ${vendorDetail}</li>
+              <li>Email:  ${vendorEmail}</li>`
+              );
+              $("#container").append(data);
 
-      L.circle([mapLatitude, mapLongitude], { radius: 500 }).addTo(map);
+            }
 
-    });
-
-  });
-
-}
-//_____________________________VENDOR DISPLAY BY ZIP CODE______________________________________________________________________________________
-//FIREBASE VENDOR QUERY BY ZIP CODE BEGINS HERE
-//ON CLICK EVENT: Once submit button is clicked the zip code information entered will be saved and data will be called/ displayed from Firebase.
-
-$("#zipCodeSubmit").on("click", function (event) {
-  event.preventDefault();
-
-  var countZipCodeMatch = 0;
-
-  //User entered zipcode is saved in the following variable and console.logged
-  var firebaseZipCode = $("#zipCodeInput").val().trim();
-  console.log("Zip Code Entered: " + firebaseZipCode);
-
-  //Clear current content on the page from prior zip code search
-  $("#container").html("");
-
-  //FUNCTION TO ACCESS FIREBASE: This function will use the snapshot method to first 
-  //obtains all object key, then check Firebase for a zip code that matches then
-  //set the variable values listed above.
-  var query = firebase.database().ref().orderByKey();
-  query.once("value")
-    .then(function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {                     //1.This will create a snapshot for each child within Firebase.
-        var key = childSnapshot.key;                                  //2.This will save the key within the snapshot
-        // console.log(key);                                          //3.This will console.log the key of every record in Firebase.
-
-        //VENDOR VARIABLES
-        var vendorDataBase = snapshot.val();
-        var vendorChild = snapshot.child(key);
-        var venueName = vendorChild.val().name;
-        var vendorAddress = vendorChild.val().location;
-        var vendorZip = vendorChild.val().details;
-        var vendorCapacity = vendorChild.val().number;
-        var vendorDetail = vendorChild.val().description;
-        var vendorEmail = vendorChild.val().email;
-        var vendorImage = vendorChild.val().imageUrl;
-        var vendorLongitude = vendorChild.val().longitude;
-        var vendorLatitude = vendorChild.val().latitude;
-
-        //RETURNED VENDOR INFORMATION IF ZIP CODE MATCHES
-        if (vendorZip === firebaseZipCode) {
-          countZipCodeMatch++;
-          // $("#venue-count").text(countZipCodeMatch);
-          console.log("SEARCH RESULTS: " + countZipCodeMatch + " found around zip code " + firebaseZipCode + ".");
-          // console.log(vendorDataBase);
-          // console.log(vendorChild);
-          // console.log("Venue Name: " + venueName);
-          // console.log("Street Address: " + vendorAddress);
-          // console.log("Zip Code: " + vendorZip);
-          // console.log("Max Capacity: " + vendorCapacity);
-          // console.log("Description: " + vendorDetail);
-          // console.log("Contact Email: " + vendorEmail);
-          // console.log("img: " + vendorImage);
-          // console.log("Long: " + vendorLongitude);
-          // console.log("Lat: " + vendorLatitude);
-
-          var mapLatLong = vendorLongitude + "," + vendorLatitude;
-
-          //If there is a zipcode match and there is a lat/long for the a matching vendor
-          if (vendorLongitude !== undefined && vendorLatitude !== undefined) {
-            L.marker([vendorLatitude,vendorLongitude]).addTo(map).bindPopup(venueName);   //1.Map marker will be displayed on the page with popup
-            console.log(mapLatLong);              
-            console.log(vendorLongitude);                                                 //2.Colsole log the Long for for the vendor found
-            console.log(vendorLatitude);                                                  //3.Colsole log the Lat for for the vendor found
           }
 
-          var data = $("<ul>").html(
-            `
-            <img src="${vendorImage}" />
-            <li>Venue Name:  ${venueName}</li>
-            <li>Address: ${vendorAddress}</li>
-            <li>Zip:  ${vendorZip}</li>
-            <li>Max Capacity:  ${vendorCapacity}</li>
-            <li>Venue Description:  ${vendorDetail}</li>
-            <li>Email:  ${vendorEmail}</li>`
-          );
-          $("#container").append(data);
+          //Console display of there are no matches to the entered zip code
+          if (vendorZip !== firebaseZipCode) {
+            console.log("No zip code match found");
+            // $("#container").append("No venue match found within the zip code " + firebaseZipCode + ". Please try another zip code.");
+          }
 
-        }
+        });
+
       });
-    });
 
-});
+  });
+}
 
 //CALL RENDER MAP FUNCTION
 renderMap();
