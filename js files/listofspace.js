@@ -195,10 +195,10 @@ $("#zipCodeSubmit").on("click", function (event) {
             `
             <img src="${vendorImage}" />
             <li><strong>Venue Name:</strong>  ${venueName}</li><br>
-            <li><strong>Address:</strong> ${vendorAddress}</li><br>
-            <li><strong>  Zip Code:</strong>  ${vendorZip}</li><br>
-            <li><strong>Maximum Capacity</strong>:  ${vendorCapacity}</li><br>
-            <li><strong>Venue Description:</strong>  ${vendorDetail}</li><br>
+            <li><strong>Address:</strong>  ${vendorAddress}</li><br>
+            <li><strong>Zip Code:</strong>  ${vendorZip}</li><br>
+            <li><strong>Maximum Capacity:</strong>  ${vendorCapacity}</li><br>
+            <li><strong>Venue Description:</strong> ${vendorDetail}</li><br>
             <li><strong>Email:</strong>  ${vendorEmail}</li>`
           );
           $("#container").append(data);
