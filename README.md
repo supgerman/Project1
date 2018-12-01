@@ -27,7 +27,7 @@
     - The intended use for this website is to connect venue owners with underutilized space to groups/companies in need of that space. 
     - APIs Used: Leaflet
     - AJAX: Used to obtain Lat/Long for venue location entered by venue owner
-    - New Technology/Library Used: Firebase Cloud Storage for image storage and retrieval.
+    - New Technology/Library Used: Firebase File Storage for image storage and retrieval.
     - Modal(s): Used on venue owner input page.
     - Repeating Element: Table used on displayed venue list.
     - CSS Framework: UIkit
